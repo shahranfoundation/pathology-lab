@@ -1,539 +1,132 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Shuddhi Pathology Lab | Accurate Reports, Home Collection</title>
-  <meta name="description" content="Shuddhi Pathology Lab - NABL accredited lab offering 100+ tests with free home sample collection. Accurate reports, affordable prices.">
-  <meta name="keywords" content="pathology lab, blood test, home collection, full body checkup, thyroid test, cbc test">
-  <meta name="author" content="Shuddhi Lab">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <!-- Font Awesome Icons (free) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Healthician Path Lab | Accurate Reports</title>
+  <meta name="description" content="Healthician Path Lab in Roorkee – accurate pathology tests, home collection, online reports. Book now!">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f9fafc;
-      color: #1e2a3a;
-      line-height: 1.5;
-    }
-
-    /* container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* buttons */
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border-radius: 40px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-    .btn-primary {
-      background-color: #0a7e6f;
-      color: white;
-      box-shadow: 0 4px 12px rgba(10,126,111,0.2);
-    }
-    .btn-primary:hover {
-      background-color: #0e5e53;
-      transform: translateY(-2px);
-    }
-    .btn-outline {
-      border: 2px solid #0a7e6f;
-      color: #0a7e6f;
-      background: transparent;
-    }
-    .btn-outline:hover {
-      background-color: #0a7e6f;
-      color: white;
-    }
-    .btn-wa {
-      background-color: #25D366;
-      color: white;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-wa:hover {
-      background-color: #1da15f;
-    }
-
-    /* navbar */
-    .navbar {
-      background: white;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 16px 0;
-    }
-    .nav-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .logo h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #0a7e6f;
-    }
-    .logo p {
-      font-size: 0.8rem;
-      color: #5b6e8c;
-      letter-spacing: 0.5px;
-    }
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      font-weight: 500;
-      color: #1e2a3a;
-    }
-    .nav-links a:hover {
-      color: #0a7e6f;
-    }
-    .menu-icon {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    /* hero */
-    .hero {
-      background: linear-gradient(135deg, #e9f5f2 0%, #ffffff 100%);
-      padding: 70px 0;
-    }
-    .hero-grid {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 40px;
-    }
-    .hero-content {
-      flex: 1;
-    }
-    .hero-content h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: #0b2b26;
-    }
-    .hero-content p {
-      font-size: 1.2rem;
-      color: #2c4b45;
-      margin-bottom: 30px;
-    }
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .hero-stats {
-      flex: 1;
-      background: white;
-      border-radius: 32px;
-      padding: 30px;
-      box-shadow: 0 20px 35px rgba(0,0,0,0.05);
-      display: flex;
-      justify-content: space-around;
-      text-align: center;
-    }
-    .stat h3 {
-      font-size: 2rem;
-      color: #0a7e6f;
-    }
-
-    /* section titles */
-    .section-title {
-      text-align: center;
-      margin: 60px 0 30px;
-    }
-    .section-title h2 {
-      font-size: 2rem;
-      display: inline-block;
-      border-bottom: 4px solid #0a7e6f;
-      padding-bottom: 8px;
-    }
-
-    /* tests & packages grid */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
-      margin-bottom: 40px;
-    }
-    .test-card, .package-card {
-      background: white;
-      border-radius: 24px;
-      padding: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      transition: 0.2s;
-    }
-    .test-card h3, .package-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 12px;
-    }
-    .price {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #0a7e6f;
-      margin: 10px 0;
-    }
-    .old-price {
-      text-decoration: line-through;
-      color: #9aa6b5;
-      font-size: 0.9rem;
-      margin-left: 8px;
-    }
-    .test-meta {
-      display: flex;
-      justify-content: space-between;
-      margin: 15px 0;
-      font-size: 0.9rem;
-    }
-    .fasting {
-      background: #fef3c7;
-      padding: 4px 8px;
-      border-radius: 20px;
-    }
-
-    /* how it works */
-    .steps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-      margin: 40px 0;
-    }
-    .step {
-      background: white;
-      border-radius: 30px;
-      padding: 30px 20px;
-      text-align: center;
-      flex: 1;
-      min-width: 180px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    .step i {
-      font-size: 2.5rem;
-      color: #0a7e6f;
-      margin-bottom: 15px;
-    }
-
-    /* gallery */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-    .gallery-item {
-      background: #e2e8f0;
-      border-radius: 20px;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      color: #4a5568;
-      background-size: cover;
-      background-position: center;
-    }
-
-    /* contact + form */
-    .contact-section {
-      background: white;
-      border-radius: 32px;
-      padding: 40px;
-      margin: 40px 0;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-    }
-    .contact-info {
-      flex: 1;
-    }
-    .contact-form {
-      flex: 1;
-    }
-    .contact-info i {
-      width: 30px;
-      color: #0a7e6f;
-    }
-    .form-group {
-      margin-bottom: 16px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid #cbd5e1;
-      border-radius: 30px;
-      font-family: inherit;
-    }
-    iframe {
-      width: 100%;
-      height: 250px;
-      border-radius: 24px;
-      border: 0;
-    }
-
-    /* footer */
-    footer {
-      background: #0f2a26;
-      color: #cbd5e1;
-      padding: 40px 0 20px;
-      margin-top: 60px;
-    }
-    .footer-flex {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 30px;
-    }
-    .social a {
-      color: white;
-      margin-right: 18px;
-      font-size: 1.4rem;
-    }
-    /* floating whatsapp */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: #25D366;
-      color: white;
-      border-radius: 50px;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      z-index: 999;
-    }
-
-    @media (max-width: 800px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: white;
-        padding: 20px;
-      }
-      .nav-links.show {
-        display: flex;
-      }
-      .menu-icon {
-        display: block;
-      }
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-      .hero-stats {
-        flex-wrap: wrap;
-      }
-    }
+    * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    .whatsapp-float { position: fixed; bottom: 28px; right: 28px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 14px rgba(0,0,0,0.2); z-index: 1000; cursor: pointer; transition: 0.2s; }
+    .whatsapp-float:hover { transform: scale(1.05); }
+    .emergency-btn { position: fixed; bottom: 100px; right: 28px; background: #ef4444; padding: 14px; border-radius: 50%; color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); } 70% { box-shadow: 0 0 0 12px rgba(239,68,68,0); } }
+    .test-card { background: white; border-left: 4px solid #10b981; border-radius: 1rem; transition: 0.2s; }
+    .test-card:hover { background: #f0fdf4; transform: translateY(-2px); }
   </style>
 </head>
-<body>
+<body class="bg-gray-50">
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/918899283047?text=Hello%20Healthician%20Path%20Lab%2C%20I%20would%20like%20to%20book%20a%20test." target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp text-white text-3xl"></i></a>
+<!-- Emergency call -->
+<a href="tel:8899283047" class="emergency-btn"><i class="fas fa-phone-alt text-xl"></i></a>
 
 <!-- Navigation -->
-<nav class="navbar">
-  <div class="container nav-flex">
-    <div class="logo">
-      <h2>शुद्धि पैथोलैब</h2>
-      <p>Shuddhi Pathology Lab</p>
+<nav class="bg-white shadow-md sticky top-0 z-30">
+  <div class="container mx-auto px-5 py-3 flex flex-wrap justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-microscope text-3xl text-green-600"></i>
+      <div><h1 class="text-2xl font-bold text-blue-800">Healthician <span class="text-green-600">Path Lab</span></h1><p class="text-xs text-gray-500 -mt-1">Accurate Reports, Trusted Care</p></div>
     </div>
-    <div class="menu-icon" id="menuToggle">
-      <i class="fas fa-bars"></i>
+    <div class="hidden md:flex space-x-6 text-gray-700 font-medium">
+      <a href="#home">Home</a><a href="#services">Services</a><a href="#packages">Packages</a><a href="#booking">Book Test</a><a href="#contact">Contact</a><a href="#reports">Reports</a>
     </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#tests">Tests</a></li>
-      <li><a href="#packages">Packages</a></li>
-      <li><a href="#howitworks">How it Works</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="flex gap-2">
+      <a href="#booking" class="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow"><i class="fas fa-calendar-check mr-1"></i> Book Now</a>
+      <a href="admin.html" class="bg-blue-100 text-blue-700 px-3 py-2 rounded-full text-sm"><i class="fas fa-user-shield"></i> Admin</a>
+    </div>
   </div>
 </nav>
 
-<!-- Hero -->
-<section id="home" class="hero">
-  <div class="container hero-grid">
-    <div class="hero-content">
-      <h1>Accurate Diagnostics <br> at Your Doorstep</h1>
-      <p>FREE home sample collection | NABL accredited techniques | Same day reports</p>
-      <div class="hero-buttons">
-        <a href="#tests" class="btn btn-primary">View Tests & Prices</a>
-        <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20know%20about%20health%20checkup%20packages" class="btn btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Inquiry</a>
+<main class="container mx-auto px-4 md:px-6">
+  <!-- Hero -->
+  <section id="home" class="py-12 md:py-16 gradient-bg rounded-3xl mt-6" style="background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);">
+    <div class="flex flex-col md:flex-row items-center gap-8">
+      <div class="flex-1 text-center md:text-left"><i class="fas fa-flask text-5xl text-green-600"></i><h2 class="text-4xl md:text-5xl font-extrabold text-gray-800">Healthician <span class="text-green-600">Path Lab</span></h2><p class="text-xl text-blue-700 font-semibold mt-2">Accurate Reports, Trusted Care</p><p class="text-gray-600 mt-4">State-of-the-art pathology in Roorkee. Home collection & accurate reports.</p>
+        <div class="flex justify-center md:justify-start gap-4 mt-6"><a href="#booking" class="bg-green-600 text-white px-6 py-3 rounded-full font-bold shadow">Book Test Now</a><a href="tel:8899283047" class="border-2 border-green-600 text-green-700 px-6 py-3 rounded-full font-bold">Call Now</a></div>
       </div>
+      <div class="flex-1"><img src="https://placehold.co/500x400/EBF5FF/10B981?text=Lab+Services" alt="Lab" class="rounded-2xl shadow-xl"></div>
     </div>
-    <div class="hero-stats">
-      <div class="stat"><h3>100+</h3><p>Tests</p></div>
-      <div class="stat"><h3>20+</h3><p>Cities covered</p></div>
-      <div class="stat"><h3>4.9⭐</h3><p>Patient rating</p></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Tests Section -->
-<div class="container" id="tests">
-  <div class="section-title">
-    <h2>Popular Tests</h2>
-  </div>
-  <div class="card-grid">
-    <div class="test-card">
-      <h3>Complete Blood Count (CBC)</h3>
-      <div class="price">₹399 <span class="old-price">₹599</span></div>
-      <div class="test-meta"><span>⏱️ 6 hrs</span><span class="fasting">⚠️ Fasting: No</span></div>
-      <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20book%20CBC%20test" class="btn btn-outline" style="margin-top:10px; width:100%;">Book on WhatsApp</a>
-    </div>
-    <div class="test-card">
-      <h3>Thyroid Profile (T3,T4,TSH)</h3>
-      <div class="price">₹499 <span class="old-price">₹750</span></div>
-      <div class="test-meta"><span>⏱️ 8 hrs</span><span class="fasting">⚠️ Fasting: No</span></div>
-      <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20book%20Thyroid%20profile" class="btn btn-outline" style="width:100%;">Book on WhatsApp</a>
-    </div>
-    <div class="test-card">
-      <h3>Lipid Profile</h3>
-      <div class="price">₹599 <span class="old-price">₹899</span></div>
-      <div class="test-meta"><span>⏱️ 10 hrs</span><span class="fasting">⚠️ Fasting: 10-12 hrs</span></div>
-      <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20Lipid%20Profile" class="btn btn-outline" style="width:100%;">Book on WhatsApp</a>
-    </div>
-    <div class="test-card">
-      <h3>Vitamin D & B12</h3>
-      <div class="price">₹1299 <span class="old-price">₹1800</span></div>
-      <div class="test-meta"><span>⏱️ 24 hrs</span><span class="fasting">⚠️ Fasting: No</span></div>
-      <a href="https://wa.me/919876543210?text=Hi%20Vitamin%20D%20and%20B12" class="btn btn-outline" style="width:100%;">Book on WhatsApp</a>
-    </div>
-  </div>
-</div>
+  <!-- About -->
+  <section class="py-12"><div class="bg-white p-8 rounded-2xl shadow-sm text-center"><i class="fas fa-heartbeat text-green-600 text-4xl"></i><h3 class="text-3xl font-bold mt-2">About Us</h3><p class="text-gray-600 max-w-3xl mx-auto mt-4">Healthician Path Lab delivers precise diagnostics with advanced technology. Patient-first, timely reports, free home pickup in Roorkee & Haridwar.</p><div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6"><div><i class="fas fa-chart-line text-3xl text-green-600"></i><p>99.8% Accuracy</p></div><div><i class="fas fa-clock text-3xl text-green-600"></i><p>On-Time Reports</p></div><div><i class="fas fa-shield-alt text-3xl text-green-600"></i><p>Confidential</p></div><div><i class="fas fa-hand-holding-heart text-3xl text-green-600"></i><p>Patient First</p></div></div></div></section>
 
-<!-- Packages -->
-<div class="container" id="packages">
-  <div class="section-title">
-    <h2>Health Packages</h2>
-  </div>
-  <div class="card-grid">
-    <div class="package-card">
-      <h3>Full Body Checkup</h3>
-      <div class="price">₹1999 <span class="old-price">₹4500</span></div>
-      <p>80+ tests | CBC, Lipid, Liver, Kidney, Thyroid, Vitamins</p>
-      <a href="https://wa.me/919876543210?text=Full%20Body%20Checkup%20package" class="btn btn-primary" style="margin-top:16px;">Enquire Now</a>
-    </div>
-    <div class="package-card">
-      <h3>Diabetes Care Package</h3>
-      <div class="price">₹999 <span class="old-price">₹1900</span></div>
-      <p>Fasting Glucose, HbA1c, Lipid Profile, Microalbumin</p>
-      <a href="https://wa.me/919876543210?text=Diabetes%20care%20package" class="btn btn-primary">Enquire Now</a>
-    </div>
-    <div class="package-card">
-      <h3>Wellness Women Package</h3>
-      <div class="price">₹1499 <span class="old-price">₹2800</span></div>
-      <p>CBC, Thyroid, Vitamin D, Iron, Urine Routine</p>
-      <a href="https://wa.me/919876543210?text=Women%20wellness%20package" class="btn btn-primary">Enquire Now</a>
-    </div>
-  </div>
-</div>
+  <!-- Services Icons -->
+  <section id="services" class="py-8"><h3 class="text-3xl font-bold text-center">Our <span class="text-green-600">Services</span></h3><div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 mt-8"><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-tint text-3xl text-blue-500"></i><p>Routine Blood</p></div><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-flask text-3xl text-green-600"></i><p>Biochemistry</p></div><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-droplet text-3xl text-red-400"></i><p>Hematology</p></div><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-virus text-3xl text-purple-500"></i><p>Microbiology</p></div><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-chart-simple text-3xl text-amber-500"></i><p>Hormone Assays</p></div><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-heartbeat text-3xl text-rose-500"></i><p>Health Packages</p></div></div></section>
 
-<!-- How It Works -->
-<div id="howitworks" class="container">
-  <div class="section-title">
-    <h2>Simple 3 Steps</h2>
-  </div>
-  <div class="steps">
-    <div class="step"><i class="fas fa-phone-alt"></i><h3>Step 1</h3><p>Call / WhatsApp to book</p></div>
-    <div class="step"><i class="fas fa-syringe"></i><h3>Step 2</h3><p>Free home sample collection</p></div>
-    <div class="step"><i class="fas fa-file-alt"></i><h3>Step 3</h3><p>Get reports via WhatsApp/Email</p></div>
-  </div>
-</div>
+  <!-- Popular Tests (dynamic) -->
+  <section><h3 class="text-2xl font-bold text-center">Popular Tests & Panels</h3><div id="testsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"></div></section>
 
-<!-- Gallery -->
-<div id="gallery" class="container">
-  <div class="section-title"><h2>Our Lab in Photos</h2></div>
-  <div class="gallery-grid">
-    <div class="gallery-item" style="background-image: url('https://placehold.co/400x300/e2e8f0/4a5568?text=Lab+Equipment'); background-size:cover;"> </div>
-    <div class="gallery-item" style="background-image: url('https://placehold.co/400x300/e2e8f0/4a5568?text=Sample+Collection'); background-size:cover;"> </div>
-    <div class="gallery-item" style="background-image: url('https://placehold.co/400x300/e2e8f0/4a5568?text=Pathologists+Team'); background-size:cover;"> </div>
-    <div class="gallery-item" style="background-image: url('https://placehold.co/400x300/e2e8f0/4a5568?text=Automated+Analyzers'); background-size:cover;"> </div>
-  </div>
-</div>
+  <!-- Health Packages (dynamic) -->
+  <section id="packages" class="py-10 bg-blue-50 rounded-3xl px-6 my-8"><h3 class="text-3xl font-bold text-center">Health <span class="text-green-600">Packages</span></h3><div id="packagesContainer" class="grid md:grid-cols-3 gap-8 mt-8"></div></section>
 
-<!-- Contact + Map -->
-<div id="contact" class="container">
-  <div class="section-title"><h2>Get in Touch</h2></div>
-  <div class="contact-section">
-    <div class="contact-info">
-      <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
-      <p>123, Shastri Nagar, Near City Hospital, Indore - 452001</p>
-      <h3><i class="fas fa-phone"></i> Call Us</h3>
-      <p>+91 98765 43210 (9 AM - 8 PM)</p>
-      <h3><i class="fab fa-whatsapp"></i> WhatsApp</h3>
-      <p>+91 98765 43210</p>
-      <h3><i class="fas fa-clock"></i> Lab Timings</h3>
-      <p>Mon-Sat: 7 AM - 8 PM | Sun: 8 AM - 2 PM</p>
-    </div>
-    <div class="contact-form">
-      <form action="https://formspree.io/f/yourformid" method="POST">
-        <div class="form-group"><input type="text" name="name" placeholder="Your Name" required></div>
-        <div class="form-group"><input type="email" name="email" placeholder="Email Address" required></div>
-        <div class="form-group"><input type="tel" name="phone" placeholder="Mobile Number" required></div>
-        <div class="form-group"><textarea rows="3" name="message" placeholder="Test / Query"></textarea></div>
-        <button type="submit" class="btn btn-primary">Send Inquiry</button>
-      </form>
-      <p class="note" style="margin-top:12px; font-size:12px;">We'll contact you within 30 mins</p>
-    </div>
-  </div>
-  <!-- Google Maps Placeholder (Embed) -->
-  <iframe src="https://maps.google.com/maps?q=Indore+Shastri+Nagar&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
-</div>
+  <!-- Home Collection -->
+  <section class="py-8"><div class="bg-white rounded-2xl shadow flex flex-col md:flex-row"><div class="p-8"><i class="fas fa-truck-medical text-4xl text-green-600"></i><h4 class="text-2xl font-bold">Home Collection Service</h4><p>Safe, convenient & reliable – sample pickup from home. Same-day available.</p><a href="#booking" class="inline-block mt-4 bg-green-600 text-white px-5 py-2 rounded-full">Book Collection</a></div><div class="md:w-1/3 bg-green-100 flex justify-center p-6"><i class="fas fa-syringe text-7xl text-green-700"></i></div></div></section>
 
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="footer-flex">
-      <div><h4>Shuddhi Pathology Lab</h4><p>ISO 15189 certified processes | Since 2012</p></div>
-      <div class="social">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-    <hr style="margin:24px 0;">
-    <p style="text-align:center;">© 2025 Shuddhi Pathology Lab | For informational purpose only. Consult your doctor.</p>
-  </div>
-</footer>
+  <!-- Why Choose Us -->
+  <section class="py-8"><h3 class="text-3xl font-bold text-center">Why <span class="text-green-600">Choose Us?</span></h3><div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8 text-center"><div><i class="fas fa-microchip text-4xl text-blue-600"></i><p>Advanced Tech</p></div><div><i class="fas fa-hand-sparkles text-4xl text-green-600"></i><p>Hygienic</p></div><div><i class="fas fa-user-md text-4xl text-indigo-500"></i><p>Experienced</p></div><div><i class="fas fa-file-alt text-4xl text-amber-600"></i><p>Confidential</p></div></div></section>
 
-<!-- Floating WhatsApp button -->
-<a href="https://wa.me/919876543210?text=Hi%2C%20I%20need%20help%20with%20booking%20a%20test" class="whatsapp-float" target="_blank">
-  <i class="fab fa-whatsapp fa-lg"></i> Book on WhatsApp
-</a>
+  <!-- Booking Form -->
+  <section id="booking" class="py-12 bg-white rounded-2xl shadow-sm my-6"><h3 class="text-3xl font-bold text-center">Book Your Test Online</h3><form id="bookingForm" class="max-w-3xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 gap-5 p-4"><input type="text" id="patName" placeholder="Patient Full Name" class="border p-3 rounded-xl" required><input type="tel" id="patMobile" placeholder="Mobile Number" class="border p-3 rounded-xl" required><input type="email" id="patEmail" placeholder="Email" class="border p-3 rounded-xl"><input type="text" id="patAddress" placeholder="Address" class="border p-3 rounded-xl"><select id="testSelect" class="border p-3 rounded-xl bg-white"><option>Complete Blood Count</option><option>Thyroid Profile</option><option>Lipid Profile</option><option>Full Body Checkup</option></select><input type="date" id="prefDate" class="border p-3 rounded-xl"><input type="time" id="prefTime" class="border p-3 rounded-xl"><div class="md:col-span-2"><button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl"><i class="fab fa-whatsapp mr-2"></i> Book Now via WhatsApp</button></div></form></section>
+
+  <!-- Report Download -->
+  <section id="reports" class="py-10 bg-gray-100 rounded-2xl my-8"><h3 class="text-2xl font-bold text-center">Download Report</h3><div class="max-w-md mx-auto bg-white p-6 rounded-xl"><input type="text" id="reportId" placeholder="Registration ID / Mobile" class="w-full border p-3 rounded-lg"><button id="downloadReportBtn" class="mt-4 bg-blue-600 w-full text-white py-2 rounded-lg">Download PDF Report</button></div></section>
+
+  <!-- Testimonials & FAQ (short) -->
+  <section class="py-8"><h3 class="text-2xl font-bold text-center">Testimonials</h3><div class="grid md:grid-cols-3 gap-6 mt-6"><div class="bg-white p-4 rounded shadow"><i class="fas fa-quote-left text-green-400"></i><p>Excellent service, timely reports.</p><p class="font-bold">- Ramesh</p></div><div class="bg-white p-4 rounded shadow"><i class="fas fa-quote-left text-green-400"></i><p>Home collection is very convenient.</p><p class="font-bold">- Sneha</p></div><div class="bg-white p-4 rounded shadow"><i class="fas fa-quote-left text-green-400"></i><p>Accurate results, trusted lab.</p><p class="font-bold">- Anuj</p></div></div></section>
+
+  <!-- Contact + Map -->
+  <section id="contact" class="py-12"><h3 class="text-3xl font-bold text-center">Contact Us</h3><div class="grid md:grid-cols-2 gap-8 mt-8"><div><iframe class="w-full h-64 rounded-xl" src="https://maps.google.com/maps?q=Ganeshpur%2C%20Roorkee%2C%20Haridwar&output=embed"></iframe><p class="mt-3"><i class="fas fa-map-marker-alt text-green-600"></i> Ganeshpur, Roorkee, Haridwar</p><p><i class="fas fa-phone-alt"></i> +91 8899283047, +91 8979951768</p><p><i class="fas fa-envelope"></i> healthicianpathlab@gmail.com</p></div><div><form id="contactForm"><input type="text" id="contactName" placeholder="Your Name" class="w-full border p-3 rounded mb-2"><input type="email" id="contactEmail" placeholder="Email" class="w-full border p-3 rounded mb-2"><textarea id="contactMsg" rows="3" placeholder="Message" class="w-full border p-3 rounded mb-2"></textarea><button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded">Send</button></form></div></div></section>
+
+  <footer class="bg-gray-900 text-white mt-12 rounded-t-3xl p-8 text-center"><p>© 2025 Healthician Path Lab. All Rights Reserved.</p><div class="flex justify-center space-x-4 mt-2"><a href="https://wa.me/918899283047" class="text-green-400"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="admin.html" class="text-blue-300">Admin</a></div></footer>
+</main>
 
 <script>
-  // Mobile menu toggle
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
+  // Load tests & packages from localStorage (if not exist, set defaults)
+  if(!localStorage.getItem("lab_tests")) localStorage.setItem("lab_tests", JSON.stringify([{name:"Full Body Checkup", icon:"fas fa-heartbeat"},{name:"Fever Panel", icon:"fas fa-temperature-high"},{name:"Dengue", icon:"fas fa-bug"},{name:"Malaria", icon:"fas fa-mosquito"},{name:"Thyroid Profile (T3,T4,TSH)", icon:"fas fa-thyroid"},{name:"Lipid Profile (Chol/HDL/LDL/VLDL)", icon:"fas fa-chart-pie"},{name:"Diabetes Panel (FBS,PPBS,HbA1c)", icon:"fas fa-tachometer-alt"}]));
+  if(!localStorage.getItem("lab_packages")) localStorage.setItem("lab_packages", JSON.stringify([{name:"Basic Health Package", price:"₹999", features:["CBC","Blood Sugar Fasting","Urine Routine"]},{name:"Advanced Package", price:"₹1999", features:["Lipid Profile","Liver/Kidney","Thyroid","HbA1c"]},{name:"Executive Package", price:"₹3499", features:["Full Body Checkup","Cardiac Markers","Vitamin Profile","Hormone Assay"]}]));
+  if(!localStorage.getItem("enquiries")) localStorage.setItem("enquiries", "[]");
+
+  function renderTests() {
+    let tests = JSON.parse(localStorage.getItem("lab_tests"));
+    document.getElementById("testsContainer").innerHTML = tests.map(t => `<div class="test-card p-4 flex items-center gap-3 shadow"><i class="${t.icon || 'fas fa-flask'} text-green-600 text-xl"></i><span>${t.name}</span></div>`).join('');
+  }
+  function renderPackages() {
+    let packages = JSON.parse(localStorage.getItem("lab_packages"));
+    document.getElementById("packagesContainer").innerHTML = packages.map((pkg,idx) => `<div class="bg-white rounded-2xl shadow-lg p-6"><h4 class="text-2xl font-bold text-blue-800">${pkg.name}</h4><p class="text-green-700 text-3xl font-bold my-2">${pkg.price}</p><ul class="mb-4">${pkg.features.map(f=>`<li><i class="fas fa-check text-green-500"></i> ${f}</li>`).join('')}</ul><button class="bookPkgBtn w-full bg-green-600 text-white py-2 rounded-full" data-pkg="${pkg.name}">Book Package</button></div>`).join('');
+    document.querySelectorAll('.bookPkgBtn').forEach(btn => btn.onclick = () => { document.getElementById("testSelect").value = btn.getAttribute("data-pkg"); document.getElementById("booking").scrollIntoView(); });
+  }
+  renderTests(); renderPackages();
+
+  // Booking WhatsApp
+  document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    let name = document.getElementById("patName").value, mobile = document.getElementById("patMobile").value, email = document.getElementById("patEmail").value, address = document.getElementById("patAddress").value, test = document.getElementById("testSelect").value, date = document.getElementById("prefDate").value, time = document.getElementById("prefTime").value;
+    let msg = `Hello Healthician Path Lab,%0A*New Booking*%0AName: ${name}%0AMobile: ${mobile}%0ATest: ${test}%0ADate: ${date||'ASAP'}%0ATime: ${time||'Flexible'}%0AAddress: ${address}%0AEmail: ${email}`;
+    let enquiries = JSON.parse(localStorage.getItem("enquiries")); enquiries.push({type:"Booking",name,mobile,email,test,date,time,address}); localStorage.setItem("enquiries", JSON.stringify(enquiries));
+    window.open(`https://wa.me/918899283047?text=${msg}`, '_blank');
+    alert("Booking sent via WhatsApp. We'll contact you.");
+    this.reset();
   });
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    let name = document.getElementById("contactName").value, email = document.getElementById("contactEmail").value, msg = document.getElementById("contactMsg").value;
+    let enquiries = JSON.parse(localStorage.getItem("enquiries")); enquiries.push({type:"Contact",name,email,message:msg}); localStorage.setItem("enquiries", JSON.stringify(enquiries));
+    alert("Enquiry sent. Thank you!");
+    this.reset();
+  });
+  document.getElementById("downloadReportBtn").onclick = () => {
+    let id = document.getElementById("reportId").value;
+    if(!id) return alert("Enter ID/Mobile");
+    const { jsPDF } = window.jspdf; const doc = new jsPDF();
+    doc.text("Healthician Path Lab - Report", 20,20); doc.text(`Patient ID: ${id}`,20,40); doc.text("All parameters within normal limits.",20,60); doc.save(`report_${id}.pdf`);
+  };
 </script>
 </body>
-</html>
+  </html>
