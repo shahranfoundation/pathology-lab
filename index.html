@@ -27,7 +27,6 @@
 <!-- Navigation with Logo -->
 <nav class="bg-white shadow-md sticky top-0 z-30">
   <div class="container mx-auto px-5 py-3 flex flex-wrap justify-between items-center">
-    <!-- Logo + Text (Logo line added here) -->
     <div class="flex items-center space-x-3">
       <img src="logo.png" alt="Healthician Path Lab Logo" class="h-12 w-auto">
       <div>
@@ -84,13 +83,11 @@
         <input type="time" id="prefTime" class="border p-3 rounded-xl">
       </div>
 
-      <!-- All Tests Checkboxes (dynamic) -->
       <div>
         <label class="font-semibold block mb-2">Select Tests (tick any number):</label>
         <div id="testCheckboxes" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 max-h-80 overflow-y-auto border p-3 rounded-xl bg-gray-50"></div>
       </div>
 
-      <!-- Package Selection (optional) -->
       <div>
         <label class="font-semibold block mb-2">Or select a Package (auto-selects its tests):</label>
         <select id="packageSelect" class="border p-3 rounded-xl w-full bg-white"><option value="">-- Select Package --</option></select>
@@ -101,8 +98,57 @@
     </form>
   </section>
 
-  <!-- Report Download -->
-  <section id="reports" class="py-10 bg-gray-100 rounded-2xl my-8"><h3 class="text-2xl font-bold text-center">Download Report</h3><div class="max-w-md mx-auto bg-white p-6 rounded-xl"><input type="text" id="reportId" placeholder="Registration ID / Mobile" class="w-full border p-3 rounded-lg"><button id="downloadReportBtn" class="mt-4 bg-blue-600 w-full text-white py-2 rounded-lg">Download PDF Report</button><p class="text-xs text-gray-400 mt-2">Demo report – contact lab for original.</p></div></section>
+  <!-- NEW: Request Report on WhatsApp with Complete Details -->
+  <section id="reports" class="py-10 bg-gray-100 rounded-2xl my-8">
+    <h3 class="text-2xl font-bold text-center">📄 Request Your Test Report</h3>
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-xl shadow">
+      <div class="text-center mb-4">
+        <i class="fab fa-whatsapp text-5xl text-green-500"></i>
+        <p class="text-gray-600 mt-2">Fill details to receive your original report on WhatsApp</p>
+      </div>
+      
+      <form id="reportRequestForm" class="space-y-4">
+        <div>
+          <label class="block font-semibold mb-1">Patient Full Name <span class="text-red-500">*</span></label>
+          <input type="text" id="reportPatientName" required placeholder="e.g., Ramesh Kumar" class="w-full border p-3 rounded-lg">
+        </div>
+        
+        <div>
+          <label class="block font-semibold mb-1">Age <span class="text-red-500">*</span></label>
+          <input type="number" id="reportPatientAge" required placeholder="e.g., 35" class="w-full border p-3 rounded-lg">
+        </div>
+        
+        <div>
+          <label class="block font-semibold mb-1">Mobile Number <span class="text-red-500">*</span></label>
+          <input type="tel" id="reportPatientMobile" required placeholder="e.g., 9876543210" class="w-full border p-3 rounded-lg">
+          <p class="text-xs text-gray-400 mt-1">Report will be sent on this WhatsApp number</p>
+        </div>
+        
+        <div>
+          <label class="block font-semibold mb-1">Test Name (Optional)</label>
+          <input type="text" id="reportTestName" placeholder="e.g., Thyroid Profile, Lipid Profile, CBC" class="w-full border p-3 rounded-lg">
+        </div>
+        
+        <div>
+          <label class="block font-semibold mb-1">Test Date (Approx)</label>
+          <input type="date" id="reportTestDate" class="w-full border p-3 rounded-lg">
+        </div>
+        
+        <div>
+          <label class="block font-semibold mb-1">Registration ID (If you have)</label>
+          <input type="text" id="reportRegId" placeholder="e.g., HL25001" class="w-full border p-3 rounded-lg">
+        </div>
+        
+        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg w-full transition flex items-center justify-center gap-2 mt-4">
+          <i class="fab fa-whatsapp text-xl"></i> Send Request on WhatsApp
+        </button>
+      </form>
+      
+      <p class="text-xs text-gray-400 text-center mt-4">
+        ✅ Our team will verify and send your original report within 1-2 hours
+      </p>
+    </div>
+  </section>
 
   <!-- Testimonials -->
   <section><h3 class="text-2xl font-bold text-center">Patient Testimonials</h3><div class="grid md:grid-cols-3 gap-6 mt-6"><div class="bg-white p-4 rounded shadow"><i class="fas fa-quote-left text-green-400"></i><p>Accurate, fast, home collection is a lifesaver.</p><p class="font-bold">- Ramesh K.</p></div><div class="bg-white p-4 rounded shadow"><i class="fas fa-quote-left text-green-400"></i><p>Very professional and affordable packages.</p><p class="font-bold">- Sneha M.</p></div><div class="bg-white p-4 rounded shadow"><i class="fas fa-quote-left text-green-400"></i><p>Best lab in Roorkee – all tests under one roof.</p><p class="font-bold">- Anuj S.</p></div></div></section>
@@ -114,7 +160,7 @@
 </main>
 
 <script>
-  // ======================== COMPREHENSIVE DEFAULT TESTS (50+ common pathology tests) ========================
+  // ======================== COMPREHENSIVE DEFAULT TESTS ========================
   const defaultTestsList = [
     { name: "Complete Blood Count (CBC)", icon: "fas fa-tint" },
     { name: "Hemoglobin (Hb)", icon: "fas fa-droplet" },
@@ -122,56 +168,42 @@
     { name: "Platelet Count", icon: "fas fa-chart-line" },
     { name: "ESR", icon: "fas fa-clock" },
     { name: "Blood Group & Rh", icon: "fas fa-tag" },
-    { name: "Lipid Profile (Cholesterol, HDL, LDL, VLDL, Triglycerides)", icon: "fas fa-chart-pie" },
+    { name: "Lipid Profile", icon: "fas fa-chart-pie" },
     { name: "Thyroid Profile (T3, T4, TSH)", icon: "fas fa-thyroid" },
     { name: "Free T3", icon: "fas fa-thyroid" },
     { name: "Free T4", icon: "fas fa-thyroid" },
     { name: "TSH Ultra-sensitive", icon: "fas fa-thyroid" },
-    { name: "Diabetes Panel (FBS, PPBS, HbA1c)", icon: "fas fa-tachometer-alt" },
     { name: "Fasting Blood Sugar (FBS)", icon: "fas fa-sugar" },
     { name: "Postprandial Blood Sugar (PPBS)", icon: "fas fa-sugar" },
-    { name: "HbA1c (Glycated Hemoglobin)", icon: "fas fa-chart-line" },
+    { name: "HbA1c", icon: "fas fa-chart-line" },
     { name: "Liver Function Test (LFT)", icon: "fas fa-liver" },
     { name: "Kidney Function Test (KFT)", icon: "fas fa-fill-drip" },
     { name: "Serum Creatinine", icon: "fas fa-flask" },
-    { name: "Blood Urea Nitrogen (BUN)", icon: "fas fa-flask" },
     { name: "Uric Acid", icon: "fas fa-capsules" },
-    { name: "Calcium", icon: "fas fa-capsules" },
-    { name: "Phosphorus", icon: "fas fa-flask" },
-    { name: "Vitamin D (25-Hydroxy)", icon: "fas fa-sun" },
+    { name: "Vitamin D", icon: "fas fa-sun" },
     { name: "Vitamin B12", icon: "fas fa-capsules" },
     { name: "Iron Studies", icon: "fas fa-bolt" },
-    { name: "Ferritin", icon: "fas fa-bolt" },
-    { name: "TIBC", icon: "fas fa-flask" },
     { name: "Dengue NS1 Antigen", icon: "fas fa-bug" },
-    { name: "Dengue IgG/IgM", icon: "fas fa-bug" },
-    { name: "Malaria Antigen (Pf/Pv)", icon: "fas fa-mosquito" },
+    { name: "Malaria Antigen", icon: "fas fa-mosquito" },
     { name: "Typhoid (Widal Test)", icon: "fas fa-stethoscope" },
     { name: "Chikungunya IgM", icon: "fas fa-virus" },
-    { name: "COVID-19 Antibody", icon: "fas fa-head-side-mask" },
-    { name: "Hepatitis B Surface Antigen (HBsAg)", icon: "fas fa-liver" },
+    { name: "Hepatitis B Surface Antigen", icon: "fas fa-liver" },
     { name: "Hepatitis C Antibody", icon: "fas fa-liver" },
     { name: "HIV 1 & 2 Antibody", icon: "fas fa-shield-virus" },
-    { name: "VDRL (Syphilis)", icon: "fas fa-syringe" },
     { name: "Urine Routine & Microscopy", icon: "fas fa-toilet" },
     { name: "Stool Routine", icon: "fas fa-poop" },
-    { name: "Pregnancy Test (Urine/Serum)", icon: "fas fa-baby" },
+    { name: "Pregnancy Test", icon: "fas fa-baby" },
     { name: "Progesterone", icon: "fas fa-female" },
-    { name: "Testosterone (Total/Free)", icon: "fas fa-mars" },
-    { name: "LH & FSH", icon: "fas fa-chart-bar" },
-    { name: "Prolactin", icon: "fas fa-tint" },
-    { name: "Cortisol", icon: "fas fa-stress" },
-    { name: "C-reactive Protein (CRP)", icon: "fas fa-fire" },
-    { name: "Rheumatoid Factor (RA)", icon: "fas fa-hand-holding-heart" },
-    { name: "Blood Culture & Sensitivity", icon: "fas fa-vial" },
-    { name: "Sputum Culture", icon: "fas fa-lungs" },
-    { name: "H. Pylori Antigen", icon: "fas fa-bacteria" }
+    { name: "Testosterone", icon: "fas fa-mars" },
+    { name: "C-reactive Protein (CRP)", icon: "fas fa-fire" }
   ];
+
   const defaultPackages = [
-    { name: "Basic Health Package", price: "₹999", features: ["CBC", "FBS", "Urine Routine", "Lipid Profile Basic"] },
+    { name: "Basic Health Package", price: "₹999", features: ["CBC", "FBS", "Urine Routine", "Lipid Profile"] },
     { name: "Advanced Health Package", price: "₹1999", features: ["Lipid Profile", "Liver Function", "Kidney Function", "Thyroid Profile", "HbA1c"] },
     { name: "Executive Health Package", price: "₹3499", features: ["Full Body Checkup", "Cardiac Markers", "Vitamin D & B12", "Hormone Assay", "Iron Studies"] }
   ];
+
   if (!localStorage.getItem("lab_tests")) localStorage.setItem("lab_tests", JSON.stringify(defaultTestsList));
   if (!localStorage.getItem("lab_packages")) localStorage.setItem("lab_packages", JSON.stringify(defaultPackages));
   if (!localStorage.getItem("enquiries")) localStorage.setItem("enquiries", "[]");
@@ -229,24 +261,83 @@
     document.getElementById("packageSelect").value = "";
   });
 
+  // Contact Form Enquiry
   document.getElementById("contactForm")?.addEventListener("submit", function(e) {
     e.preventDefault();
+    let name = document.getElementById("contactName").value.trim();
+    let email = document.getElementById("contactEmail").value.trim();
+    let message = document.getElementById("contactMsg").value.trim();
+    if (!name || !email || !message) {
+      alert("Please fill all fields");
+      return;
+    }
+    let msg = `Hello Healthician Path Lab,%0A*New Enquiry*%0AName: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
     let enquiries = JSON.parse(localStorage.getItem("enquiries"));
-    enquiries.push({ type: "Contact", name: document.getElementById("contactName").value, email: document.getElementById("contactEmail").value, message: document.getElementById("contactMsg").value });
+    enquiries.push({ type: "Contact", name, email, message, timestamp: new Date().toISOString() });
     localStorage.setItem("enquiries", JSON.stringify(enquiries));
-    alert("Enquiry sent!");
+    window.open(`https://wa.me/918899283047?text=${msg}`, '_blank');
+    alert("Enquiry sent via WhatsApp! We'll contact you soon.");
     this.reset();
   });
 
-  document.getElementById("downloadReportBtn")?.addEventListener("click", function() {
-    let id = document.getElementById("reportId").value;
-    if (!id) return alert("Enter ID/Mobile");
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.text("Healthician Path Lab - Test Report", 20, 20);
-    doc.text(`Patient ID: ${id}`, 20, 40);
-    doc.text("All parameters within normal limits. This is a demo report.", 20, 60);
-    doc.save(`report_${id}.pdf`);
+  // NEW: Report Request on WhatsApp with complete details
+  document.getElementById("reportRequestForm")?.addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    let patientName = document.getElementById("reportPatientName").value.trim();
+    let patientAge = document.getElementById("reportPatientAge").value.trim();
+    let patientMobile = document.getElementById("reportPatientMobile").value.trim();
+    let testName = document.getElementById("reportTestName").value.trim();
+    let testDate = document.getElementById("reportTestDate").value;
+    let regId = document.getElementById("reportRegId").value.trim();
+    
+    if (!patientName) { alert("Please enter patient name"); return; }
+    if (!patientAge) { alert("Please enter patient age"); return; }
+    if (!patientMobile || patientMobile.length < 10) { alert("Please enter valid mobile number (10 digits)"); return; }
+    
+    let formattedDate = testDate ? new Date(testDate).toLocaleDateString('en-IN') : "Not provided";
+    
+    let msg = `Hello Healthician Path Lab,%0A%0A*📄 NEW REPORT REQUEST*%0A%0A`;
+    msg += `👤 Patient Name: ${patientName}%0A`;
+    msg += `🎂 Age: ${patientAge} years%0A`;
+    msg += `📞 Mobile: ${patientMobile}%0A`;
+    if (regId) msg += `🆔 Registration ID: ${regId}%0A`;
+    if (testName) msg += `🧪 Test Name: ${testName}%0A`;
+    msg += `📅 Test Date: ${formattedDate}%0A`;
+    msg += `⏰ Request Date: ${new Date().toLocaleString()}%0A%0A`;
+    msg += `🙏 Please send the original report on this WhatsApp number. Thank you!`;
+    
+    // Save to localStorage
+    let requests = JSON.parse(localStorage.getItem("report_requests") || "[]");
+    requests.push({
+      type: "Report Request",
+      patientName: patientName,
+      age: patientAge,
+      mobile: patientMobile,
+      testName: testName || "Not specified",
+      testDate: testDate,
+      regId: regId || "Not provided",
+      requestDate: new Date().toISOString()
+    });
+    localStorage.setItem("report_requests", JSON.stringify(requests));
+    
+    let enquiries = JSON.parse(localStorage.getItem("enquiries") || "[]");
+    enquiries.push({
+      type: "Report Request",
+      name: patientName,
+      age: patientAge,
+      mobile: patientMobile,
+      testName: testName,
+      testDate: testDate,
+      regId: regId
+    });
+    localStorage.setItem("enquiries", JSON.stringify(enquiries));
+    
+    // Open WhatsApp
+    window.open(`https://wa.me/918899283047?text=${msg}`, '_blank');
+    
+    alert("✓ Request sent successfully! Our team will send your report on WhatsApp within 1-2 hours.");
+    this.reset();
   });
 
   renderTestCheckboxes();
