@@ -98,13 +98,13 @@
     </form>
   </section>
 
-  <!-- NEW: Request Report on WhatsApp with Complete Details -->
+  <!-- Report Request Section - WITHOUT Mobile Number Field -->
   <section id="reports" class="py-10 bg-gray-100 rounded-2xl my-8">
     <h3 class="text-2xl font-bold text-center">📄 Request Your Test Report</h3>
     <div class="max-w-lg mx-auto bg-white p-6 rounded-xl shadow">
       <div class="text-center mb-4">
         <i class="fab fa-whatsapp text-5xl text-green-500"></i>
-        <p class="text-gray-600 mt-2">Fill details to receive your original report on WhatsApp</p>
+        <p class="text-gray-600 mt-2">Fill details to request your original report on WhatsApp</p>
       </div>
       
       <form id="reportRequestForm" class="space-y-4">
@@ -116,12 +116,6 @@
         <div>
           <label class="block font-semibold mb-1">Age <span class="text-red-500">*</span></label>
           <input type="number" id="reportPatientAge" required placeholder="e.g., 35" class="w-full border p-3 rounded-lg">
-        </div>
-        
-        <div>
-          <label class="block font-semibold mb-1">Mobile Number <span class="text-red-500">*</span></label>
-          <input type="tel" id="reportPatientMobile" required placeholder="e.g., 9876543210" class="w-full border p-3 rounded-lg">
-          <p class="text-xs text-gray-400 mt-1">Report will be sent on this WhatsApp number</p>
         </div>
         
         <div>
@@ -145,7 +139,7 @@
       </form>
       
       <p class="text-xs text-gray-400 text-center mt-4">
-        ✅ Our team will verify and send your original report within 1-2 hours
+        ✅ Our team will send your original report on this WhatsApp number
       </p>
     </div>
   </section>
@@ -261,7 +255,7 @@
     document.getElementById("packageSelect").value = "";
   });
 
-  // Contact Form Enquiry
+  // Contact Form Enquiry with WhatsApp
   document.getElementById("contactForm")?.addEventListener("submit", function(e) {
     e.preventDefault();
     let name = document.getElementById("contactName").value.trim();
@@ -280,27 +274,24 @@
     this.reset();
   });
 
-  // NEW: Report Request on WhatsApp with complete details
+  // Report Request on WhatsApp (WITHOUT mobile number field)
   document.getElementById("reportRequestForm")?.addEventListener("submit", function(e) {
     e.preventDefault();
     
     let patientName = document.getElementById("reportPatientName").value.trim();
     let patientAge = document.getElementById("reportPatientAge").value.trim();
-    let patientMobile = document.getElementById("reportPatientMobile").value.trim();
     let testName = document.getElementById("reportTestName").value.trim();
     let testDate = document.getElementById("reportTestDate").value;
     let regId = document.getElementById("reportRegId").value.trim();
     
     if (!patientName) { alert("Please enter patient name"); return; }
     if (!patientAge) { alert("Please enter patient age"); return; }
-    if (!patientMobile || patientMobile.length < 10) { alert("Please enter valid mobile number (10 digits)"); return; }
     
     let formattedDate = testDate ? new Date(testDate).toLocaleDateString('en-IN') : "Not provided";
     
     let msg = `Hello Healthician Path Lab,%0A%0A*📄 NEW REPORT REQUEST*%0A%0A`;
     msg += `👤 Patient Name: ${patientName}%0A`;
     msg += `🎂 Age: ${patientAge} years%0A`;
-    msg += `📞 Mobile: ${patientMobile}%0A`;
     if (regId) msg += `🆔 Registration ID: ${regId}%0A`;
     if (testName) msg += `🧪 Test Name: ${testName}%0A`;
     msg += `📅 Test Date: ${formattedDate}%0A`;
@@ -308,35 +299,22 @@
     msg += `🙏 Please send the original report on this WhatsApp number. Thank you!`;
     
     // Save to localStorage
-    let requests = JSON.parse(localStorage.getItem("report_requests") || "[]");
-    requests.push({
-      type: "Report Request",
-      patientName: patientName,
-      age: patientAge,
-      mobile: patientMobile,
-      testName: testName || "Not specified",
-      testDate: testDate,
-      regId: regId || "Not provided",
-      requestDate: new Date().toISOString()
-    });
-    localStorage.setItem("report_requests", JSON.stringify(requests));
-    
     let enquiries = JSON.parse(localStorage.getItem("enquiries") || "[]");
     enquiries.push({
       type: "Report Request",
       name: patientName,
       age: patientAge,
-      mobile: patientMobile,
       testName: testName,
       testDate: testDate,
-      regId: regId
+      regId: regId,
+      timestamp: new Date().toISOString()
     });
     localStorage.setItem("enquiries", JSON.stringify(enquiries));
     
     // Open WhatsApp
     window.open(`https://wa.me/918899283047?text=${msg}`, '_blank');
     
-    alert("✓ Request sent successfully! Our team will send your report on WhatsApp within 1-2 hours.");
+    alert("✓ Request sent successfully! Our team will send your report on WhatsApp.");
     this.reset();
   });
 
