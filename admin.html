@@ -30,34 +30,10 @@
     </div>
   </div>
 
-  <!-- SECTION 1: Manual Booking (Admin se booking) -->
-  <div class="bg-white p-5 rounded-xl shadow mb-8">
-    <h2 class="text-2xl font-semibold mb-4"><i class="fas fa-calendar-plus text-green-600 mr-2"></i> New Booking (Manual) - Walk-in / Phone Call</h2>
-    <form id="manualBookingForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <input type="text" id="manualName" placeholder="Patient Full Name *" class="border p-2 rounded" required>
-      <input type="tel" id="manualMobile" placeholder="Mobile Number *" class="border p-2 rounded" required>
-      <input type="email" id="manualEmail" placeholder="Email (Optional)" class="border p-2 rounded">
-      <input type="text" id="manualAddress" placeholder="Address" class="border p-2 rounded">
-      <select id="manualTests" multiple size="4" class="border p-2 rounded">
-        <option value="">-- Select Tests (Ctrl+Click) --</option>
-      </select>
-      <select id="manualPackage" class="border p-2 rounded">
-        <option value="">-- Or Select Package --</option>
-      </select>
-      <input type="date" id="manualDate" class="border p-2 rounded">
-      <input type="time" id="manualTime" class="border p-2 rounded">
-      <div class="md:col-span-2">
-        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded w-full font-semibold">
-          <i class="fab fa-whatsapp mr-2"></i> Save Booking & Send WhatsApp
-        </button>
-      </div>
-    </form>
-    <p class="text-xs text-gray-500 mt-2">✅ Booking saved in enquiries & WhatsApp confirmation sent to patient.</p>
-  </div>
-
-  <!-- SECTION 2: Manage Tests -->
+  <!-- SECTION 1: Manage Tests -->
   <div class="bg-white p-5 rounded-xl shadow mb-8">
     <h2 class="text-2xl font-semibold flex items-center"><i class="fas fa-flask text-green-600 mr-2"></i> Manage Tests</h2>
+    <p class="text-sm text-gray-500 mb-2">Add/Edit/Delete tests that appear on website booking form</p>
     <div id="testList" class="my-4 space-y-2 max-h-60 overflow-y-auto"></div>
     <div class="flex gap-2 mt-3 flex-wrap">
       <input type="text" id="newTestName" placeholder="New test name" class="border p-2 rounded flex-1">
@@ -66,9 +42,10 @@
     </div>
   </div>
 
-  <!-- SECTION 3: Manage Packages -->
+  <!-- SECTION 2: Manage Packages -->
   <div class="bg-white p-5 rounded-xl shadow mb-8">
     <h2 class="text-2xl font-semibold"><i class="fas fa-box"></i> Manage Packages & Prices</h2>
+    <p class="text-sm text-gray-500 mb-2">Add/Edit/Delete packages and their prices</p>
     <div id="packagesList" class="my-4 space-y-4 max-h-60 overflow-y-auto"></div>
     <div class="border-t pt-4">
       <h3 class="font-bold">Add New Package</h3>
@@ -81,18 +58,18 @@
     </div>
   </div>
 
-  <!-- SECTION 4: Enquiries & Bookings List -->
+  <!-- SECTION 3: Enquiries & Bookings List (VIEW ONLY) -->
   <div class="bg-white p-5 rounded-xl shadow">
     <h2 class="text-2xl font-semibold"><i class="fas fa-envelope"></i> Enquiries & Bookings</h2>
+    <p class="text-sm text-gray-500 mb-2">All patient bookings and enquiries appear here</p>
     <div id="enquiriesList" class="mt-4 max-h-96 overflow-y-auto"></div>
     <button id="clearEnquiries" class="mt-3 bg-red-500 text-white px-4 py-1 rounded text-sm">Clear All Enquiries</button>
   </div>
 </div>
 
 <script>
-  const ADMIN_PASSWORD = "adminhpl123";
+  const ADMIN_PASSWORD = "adminspl123";
 
-  // Helper functions
   function loadTests() { return JSON.parse(localStorage.getItem("lab_tests") || "[]"); }
   function saveTests(tests) { localStorage.setItem("lab_tests", JSON.stringify(tests)); }
   function loadPackages() { return JSON.parse(localStorage.getItem("lab_packages") || "[]"); }
@@ -100,63 +77,13 @@
   function loadEnquiries() { return JSON.parse(localStorage.getItem("enquiries") || "[]"); }
   function saveEnquiries(e) { localStorage.setItem("enquiries", JSON.stringify(e)); }
 
-  // Populate dropdowns for manual booking
-  function populateManualDropdowns() {
-    let tests = loadTests();
-    let testSelect = document.getElementById("manualTests");
-    if (testSelect) {
-      testSelect.innerHTML = tests.map(t => `<option value="${t.name}">${t.name}</option>`).join('');
-    }
-    let pkgs = loadPackages();
-    let pkgSelect = document.getElementById("manualPackage");
-    if (pkgSelect) {
-      pkgSelect.innerHTML = '<option value="">-- Or Select Package --</option>' + pkgs.map(p => `<option value="${p.name}">${p.name} - ${p.price}</option>`).join('');
-    }
-  }
-
-  // Manual Booking Submit
-  document.getElementById("manualBookingForm")?.addEventListener("submit", function(e) {
-    e.preventDefault();
-    let name = document.getElementById("manualName").value.trim();
-    let mobile = document.getElementById("manualMobile").value.trim();
-    if (!name || !mobile) { alert("Please fill name and mobile"); return; }
-    
-    let selectedTests = Array.from(document.getElementById("manualTests").selectedOptions).map(opt => opt.value).filter(v => v);
-    let selectedPackage = document.getElementById("manualPackage").value;
-    let email = document.getElementById("manualEmail").value;
-    let address = document.getElementById("manualAddress").value;
-    let date = document.getElementById("manualDate").value;
-    let time = document.getElementById("manualTime").value;
-    
-    let testStr = selectedTests.length ? selectedTests.join(", ") : (selectedPackage ? selectedPackage : "None");
-    
-    let msg = `Hello Healthician Path Lab,%0A*New Booking (via Admin)*%0AName: ${name}%0AMobile: ${mobile}%0ATests: ${testStr}%0ADate: ${date || "ASAP"}%0ATime: ${time || "Flexible"}%0AAddress: ${address || "Not provided"}%0AEmail: ${email || "N/A"}`;
-    
-    let enquiries = loadEnquiries();
-    enquiries.push({ 
-      type: "Booking (Admin)", 
-      name, mobile, 
-      tests: selectedTests, 
-      package: selectedPackage,
-      date, time, address, email,
-      timestamp: new Date().toISOString() 
-    });
-    saveEnquiries(enquiries);
-    
-    window.open(`https://wa.me/918899283047?text=${msg}`, '_blank');
-    alert("Booking saved! WhatsApp confirmation sent.");
-    this.reset();
-    populateManualDropdowns();
-    renderEnquiries();
-  });
-
   function renderTests() {
     let tests = loadTests();
     let container = document.getElementById("testList");
     if (container) {
       container.innerHTML = tests.map((t,idx) => `<div class="flex justify-between items-center bg-gray-50 p-2 rounded"><span><i class="${t.icon||'fas fa-flask'} mr-2"></i> ${t.name}</span><div><button class="editTest text-blue-600 mr-2" data-idx="${idx}"><i class="fas fa-edit"></i></button><button class="delTest text-red-600" data-idx="${idx}"><i class="fas fa-trash"></i></button></div></div>`).join('');
-      document.querySelectorAll('.editTest').forEach(btn => btn.onclick = () => { let idx = btn.dataset.idx, tests = loadTests(); let newName = prompt("Edit test name", tests[idx].name); if(newName) { tests[idx].name = newName; let newIcon = prompt("Icon class", tests[idx].icon || "fas fa-flask"); tests[idx].icon = newIcon; saveTests(tests); renderTests(); populateManualDropdowns(); } });
-      document.querySelectorAll('.delTest').forEach(btn => btn.onclick = () => { if(confirm("Delete test?")) { let idx = btn.dataset.idx, tests = loadTests(); tests.splice(idx,1); saveTests(tests); renderTests(); populateManualDropdowns(); } });
+      document.querySelectorAll('.editTest').forEach(btn => btn.onclick = () => { let idx = btn.dataset.idx, tests = loadTests(); let newName = prompt("Edit test name", tests[idx].name); if(newName) { tests[idx].name = newName; let newIcon = prompt("Icon class", tests[idx].icon || "fas fa-flask"); tests[idx].icon = newIcon; saveTests(tests); renderTests(); } });
+      document.querySelectorAll('.delTest').forEach(btn => btn.onclick = () => { if(confirm("Delete test?")) { let idx = btn.dataset.idx, tests = loadTests(); tests.splice(idx,1); saveTests(tests); renderTests(); } });
     }
   }
 
@@ -165,8 +92,8 @@
     let container = document.getElementById("packagesList");
     if (container) {
       container.innerHTML = pkgs.map((p,idx) => `<div class="border rounded p-3 bg-gray-50"><div class="flex justify-between flex-wrap"><span class="font-bold text-lg">${p.name}</span><span class="text-green-700 font-bold">${p.price}</span><div><button class="editPkgBtn text-blue-600 mr-2" data-idx="${idx}">Edit</button><button class="delPkgBtn text-red-600" data-idx="${idx}">Delete</button></div></div><ul class="text-sm ml-5">${p.features.map(f=>`<li>✓ ${f}</li>`).join('')}</ul></div>`).join('');
-      document.querySelectorAll('.editPkgBtn').forEach(btn => btn.onclick = () => { let idx = btn.dataset.idx, pkgs = loadPackages(); let newName = prompt("Package name", pkgs[idx].name); if(newName) pkgs[idx].name = newName; let newPrice = prompt("Price", pkgs[idx].price); if(newPrice) pkgs[idx].price = newPrice; let newFeatures = prompt("Features (comma separated)", pkgs[idx].features.join(',')); if(newFeatures) pkgs[idx].features = newFeatures.split(',').map(s=>s.trim()); savePackages(pkgs); renderPackages(); populateManualDropdowns(); });
-      document.querySelectorAll('.delPkgBtn').forEach(btn => btn.onclick = () => { if(confirm("Delete package?")) { let idx = btn.dataset.idx, pkgs = loadPackages(); pkgs.splice(idx,1); savePackages(pkgs); renderPackages(); populateManualDropdowns(); } });
+      document.querySelectorAll('.editPkgBtn').forEach(btn => btn.onclick = () => { let idx = btn.dataset.idx, pkgs = loadPackages(); let newName = prompt("Package name", pkgs[idx].name); if(newName) pkgs[idx].name = newName; let newPrice = prompt("Price", pkgs[idx].price); if(newPrice) pkgs[idx].price = newPrice; let newFeatures = prompt("Features (comma separated)", pkgs[idx].features.join(',')); if(newFeatures) pkgs[idx].features = newFeatures.split(',').map(s=>s.trim()); savePackages(pkgs); renderPackages(); });
+      document.querySelectorAll('.delPkgBtn').forEach(btn => btn.onclick = () => { if(confirm("Delete package?")) { let idx = btn.dataset.idx, pkgs = loadPackages(); pkgs.splice(idx,1); savePackages(pkgs); renderPackages(); } });
     }
   }
 
@@ -183,7 +110,7 @@
     let name = document.getElementById("newTestName").value.trim();
     let icon = document.getElementById("newTestIcon").value.trim() || "fas fa-flask";
     if(!name) return alert("Enter test name");
-    let tests = loadTests(); tests.push({name, icon}); saveTests(tests); renderTests(); populateManualDropdowns(); 
+    let tests = loadTests(); tests.push({name, icon}); saveTests(tests); renderTests(); 
     document.getElementById("newTestName").value = ""; document.getElementById("newTestIcon").value = "";
   };
   document.getElementById("addPackageBtn").onclick = () => {
@@ -191,15 +118,14 @@
     let price = document.getElementById("pkgPrice").value.trim();
     let features = document.getElementById("pkgFeatures").value.split(',').map(s=>s.trim()).filter(s=>s);
     if(!name || !price) return alert("Name & price required");
-    let pkgs = loadPackages(); pkgs.push({name, price, features}); savePackages(pkgs); renderPackages(); populateManualDropdowns();
+    let pkgs = loadPackages(); pkgs.push({name, price, features}); savePackages(pkgs); renderPackages();
     document.getElementById("pkgName").value = ""; document.getElementById("pkgPrice").value = ""; document.getElementById("pkgFeatures").value = "";
   };
   document.getElementById("clearEnquiries").onclick = () => { if(confirm("Clear all enquiries?")) { saveEnquiries([]); renderEnquiries(); } };
 
-  // Auth logic
   function checkAuth() { return sessionStorage.getItem("admin_logged_in") === "true"; }
   function showLogin() { document.getElementById("loginBox").classList.remove("hidden-panel"); document.getElementById("adminPanel").classList.add("hidden-panel"); }
-  function showPanel() { document.getElementById("loginBox").classList.add("hidden-panel"); document.getElementById("adminPanel").classList.remove("hidden-panel"); renderTests(); renderPackages(); renderEnquiries(); populateManualDropdowns(); }
+  function showPanel() { document.getElementById("loginBox").classList.add("hidden-panel"); document.getElementById("adminPanel").classList.remove("hidden-panel"); renderTests(); renderPackages(); renderEnquiries(); }
   document.getElementById("loginBtn").onclick = () => { let pwd = document.getElementById("passwordInput").value; if (pwd === ADMIN_PASSWORD) { sessionStorage.setItem("admin_logged_in", "true"); showPanel(); document.getElementById("errorMsg").classList.add("hidden"); } else { document.getElementById("errorMsg").classList.remove("hidden"); } };
   document.getElementById("logoutBtn").onclick = () => { sessionStorage.removeItem("admin_logged_in"); showLogin(); document.getElementById("passwordInput").value = ""; };
   if (checkAuth()) showPanel(); else showLogin();
