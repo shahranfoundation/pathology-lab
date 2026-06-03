@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel | Healthician Path Lab</title>
+  <title>Admin Login | Healthician Path Lab</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -13,14 +13,17 @@
 </head>
 <body class="p-6">
 
+<!-- Login Box -->
 <div id="loginBox" class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow text-center mt-20">
   <i class="fas fa-lock text-5xl text-blue-600 mb-4"></i>
   <h2 class="text-2xl font-bold">Admin Access Required</h2>
+  <p class="text-gray-500 text-sm mb-4">Enter password to access admin panel</p>
   <input type="password" id="passwordInput" placeholder="Enter Password" class="w-full border p-3 rounded-lg my-4">
   <button id="loginBtn" class="bg-blue-600 text-white px-6 py-2 rounded-lg w-full">Login</button>
-  <p id="errorMsg" class="text-red-500 text-sm mt-2 hidden">Incorrect password!</p>
+  <p id="errorMsg" class="text-red-500 text-sm mt-2 hidden">Incorrect password! Try again.</p>
 </div>
 
+<!-- Admin Panel (Hidden by default) -->
 <div id="adminPanel" class="max-w-7xl mx-auto hidden-panel">
   <div class="flex justify-between items-center mb-6 flex-wrap gap-2">
     <h1 class="text-3xl font-bold text-blue-800"><i class="fas fa-user-shield"></i> Admin Panel</h1>
@@ -69,6 +72,9 @@
 
 <script>
   const ADMIN_PASSWORD = "adminspl123";
+
+  // Clear any existing session on page load
+  sessionStorage.removeItem("admin_logged_in");
 
   function loadTests() { return JSON.parse(localStorage.getItem("lab_tests") || "[]"); }
   function saveTests(tests) { localStorage.setItem("lab_tests", JSON.stringify(tests)); }
@@ -123,12 +129,31 @@
   };
   document.getElementById("clearEnquiries").onclick = () => { if(confirm("Clear all enquiries?")) { saveEnquiries([]); renderEnquiries(); } };
 
-  function checkAuth() { return sessionStorage.getItem("admin_logged_in") === "true"; }
-  function showLogin() { document.getElementById("loginBox").classList.remove("hidden-panel"); document.getElementById("adminPanel").classList.add("hidden-panel"); }
-  function showPanel() { document.getElementById("loginBox").classList.add("hidden-panel"); document.getElementById("adminPanel").classList.remove("hidden-panel"); renderTests(); renderPackages(); renderEnquiries(); }
-  document.getElementById("loginBtn").onclick = () => { let pwd = document.getElementById("passwordInput").value; if (pwd === ADMIN_PASSWORD) { sessionStorage.setItem("admin_logged_in", "true"); showPanel(); document.getElementById("errorMsg").classList.add("hidden"); } else { document.getElementById("errorMsg").classList.remove("hidden"); } };
-  document.getElementById("logoutBtn").onclick = () => { sessionStorage.removeItem("admin_logged_in"); showLogin(); document.getElementById("passwordInput").value = ""; };
-  if (checkAuth()) showPanel(); else showLogin();
+  // Login logic
+  document.getElementById("loginBtn").onclick = () => {
+    let pwd = document.getElementById("passwordInput").value;
+    if (pwd === ADMIN_PASSWORD) {
+      sessionStorage.setItem("admin_logged_in", "true");
+      document.getElementById("loginBox").classList.add("hidden-panel");
+      document.getElementById("adminPanel").classList.remove("hidden-panel");
+      renderTests(); renderPackages(); renderEnquiries();
+      document.getElementById("errorMsg").classList.add("hidden");
+    } else {
+      document.getElementById("errorMsg").classList.remove("hidden");
+    }
+  };
+
+  document.getElementById("logoutBtn").onclick = () => {
+    sessionStorage.removeItem("admin_logged_in");
+    document.getElementById("loginBox").classList.remove("hidden-panel");
+    document.getElementById("adminPanel").classList.add("hidden-panel");
+    document.getElementById("passwordInput").value = "";
+  };
+
+  // Initially show login box, panel hidden
+  document.getElementById("loginBox").classList.remove("hidden-panel");
+  document.getElementById("adminPanel").classList.add("hidden-panel");
+  sessionStorage.removeItem("admin_logged_in");
 </script>
 </body>
 </html>
