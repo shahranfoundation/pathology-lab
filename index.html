@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Healthician Path Lab | 50+ Tests</title>
+  <meta name="description" content="Healthician Path Lab Roorkee – 50+ pathology tests, home collection, online reports.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000; cursor: pointer; }
-    .emergency-btn { position: fixed; bottom: 90px; right: 20px; background: #ef4444; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000; animation: pulse 1.5s infinite; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); } 70% { box-shadow: 0 0 0 10px rgba(239,68,68,0); } }
+    * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    .whatsapp-float { position: fixed; bottom: 28px; right: 28px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 14px rgba(0,0,0,0.2); z-index: 1000; cursor: pointer; }
+    .emergency-btn { position: fixed; bottom: 100px; right: 28px; background: #ef4444; padding: 14px; border-radius: 50%; color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); } 70% { box-shadow: 0 0 0 12px rgba(239,68,68,0); } }
   </style>
 </head>
 <body class="bg-gray-50">
@@ -17,169 +20,100 @@
 <!-- Floating WhatsApp -->
 <a href="https://wa.me/919837983062?text=Hello%20Healthician%20Path%20Lab%2C%20I%20would%20like%20to%20book%20a%20test." target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp text-white text-3xl"></i></a>
 <!-- Emergency call -->
-<a href="tel:9837983062" class="emergency-btn"><i class="fas fa-phone-alt text-2xl"></i></a>
+<a href="tel:9837983062" class="emergency-btn"><i class="fas fa-phone-alt text-xl"></i></a>
 
 <!-- Navigation -->
-<nav class="bg-white shadow-md sticky top-0 z-30 py-3">
-  <div class="container mx-auto px-4 flex justify-between items-center">
-    <div class="flex items-center gap-2">
-      <img src="logo.png" alt="Logo" class="h-10 w-auto" onerror="this.src='https://placehold.co/40x40/10B981/white?text=H'">
-      <span class="font-bold text-xl text-blue-800">Healthician <span class="text-green-600">Path Lab</span></span>
+<nav class="bg-white shadow-md sticky top-0 z-30">
+  <div class="container mx-auto px-5 py-3 flex flex-wrap justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <img src="logo.png" alt="Healthician Path Lab Logo" class="h-12 w-auto">
+      <div>
+        <h1 class="text-xl md:text-2xl font-bold text-blue-800">Healthician <span class="text-green-600">Path Lab</span></h1>
+        <p class="text-xs text-gray-500 hidden sm:block">Accurate Reports, Trusted Care</p>
+      </div>
     </div>
-    <a href="#booking" class="bg-green-600 text-white px-4 py-2 rounded-full text-sm">Book Now</a>
+    <div class="hidden md:flex space-x-6 text-gray-700 font-medium">
+      <a href="#home">Home</a><a href="#services">Services</a><a href="#packages">Packages</a><a href="#booking">Book Test</a><a href="#contact">Contact</a>
+    </div>
+    <div class="flex gap-2">
+      <a href="#booking" class="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow"><i class="fas fa-calendar-check mr-1"></i> Book Now</a>
+    </div>
   </div>
 </nav>
 
-<main class="container mx-auto px-4">
-  <!-- Hero -->
-  <section class="py-10 text-center bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl mt-4">
-    <h1 class="text-4xl font-bold text-gray-800">Healthician <span class="text-green-600">Path Lab</span></h1>
-    <p class="text-blue-600 text-xl mt-2">Accurate Reports, Trusted Care</p>
-    <p class="text-gray-600 mt-3">50+ pathology tests | Home collection | Same-day reports</p>
-    <div class="flex gap-4 justify-center mt-6">
-      <a href="#booking" class="bg-green-600 text-white px-6 py-2 rounded-full">Book Test</a>
-      <a href="tel:9837983062" class="border border-green-600 text-green-600 px-6 py-2 rounded-full">Call Now</a>
+<main class="container mx-auto px-4 md:px-6">
+  <!-- Hero Section -->
+  <section id="home" class="py-12 md:py-16 rounded-3xl mt-6" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
+    <div class="flex flex-col md:flex-row items-center gap-8">
+      <div class="flex-1 text-center md:text-left">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800">Healthician <span class="text-green-600">Path Lab</span></h2>
+        <p class="text-xl text-blue-700 font-semibold mt-2">Accurate Reports, Trusted Care</p>
+        <p class="text-gray-600 mt-4">50+ pathology tests | Home collection | Same-day reports</p>
+        <div class="flex justify-center md:justify-start gap-4 mt-6">
+          <a href="#booking" class="bg-green-600 text-white px-6 py-3 rounded-full font-bold shadow">Book Test Now</a>
+          <a href="tel:9837983062" class="border-2 border-green-600 text-green-700 px-6 py-3 rounded-full font-bold">Call Now</a>
+        </div>
+      </div>
+      <div class="flex-1"><img src="hero.jpeg" alt="Lab" class="rounded-2xl shadow-xl w-full h-64 object-cover" onerror="this.src='https://placehold.co/500x400/10B981/white?text=Lab'"></div>
     </div>
   </section>
 
-  <!-- 50+ Tests Section with Checkboxes -->
+  <!-- About Us -->
+  <section class="py-12"><div class="bg-white p-8 rounded-2xl shadow-sm flex flex-col md:flex-row gap-8 items-center"><div class="md:w-1/2"><img src="about.jpg" class="rounded-2xl shadow-lg w-full h-64 object-cover" onerror="this.src='https://placehold.co/400x300/10B981/white?text=Doctor'"></div><div class="md:w-1/2 text-center md:text-left"><i class="fas fa-heartbeat text-green-600 text-4xl"></i><h3 class="text-3xl font-bold mt-2">About Us</h3><p class="text-gray-600 mt-4">Healthician Path Lab – advanced diagnostics, experienced team, Serving Roorkee & Haridwar.</p><div class="grid grid-cols-2 gap-4 mt-6"><div><i class="fas fa-chart-line text-3xl text-green-600"></i><p>99.8% Accuracy</p></div><div><i class="fas fa-clock text-3xl text-green-600"></i><p>On-Time Reports</p></div><div><i class="fas fa-shield-alt text-3xl text-green-600"></i><p>Confidential</p></div><div><i class="fas fa-hand-holding-heart text-3xl text-green-600"></i><p>Patient First</p></div></div></div></div></section>
+
+  <!-- Services Icons -->
+  <section id="services"><h3 class="text-3xl font-bold text-center">Our Services</h3><div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 mt-8"><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-tint text-4xl text-blue-500"></i><p>Routine Blood</p></div><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-flask text-4xl text-green-600"></i><p>Biochemistry</p></div><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-droplet text-4xl text-red-400"></i><p>Hematology</p></div><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-virus text-4xl text-purple-500"></i><p>Microbiology</p></div><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-chart-line text-4xl text-amber-500"></i><p>Hormone Assays</p></div><div class="bg-white p-4 rounded-xl text-center shadow"><i class="fas fa-heartbeat text-4xl text-rose-500"></i><p>Health Packages</p></div></div></section>
+
+  <!-- 50+ TESTS SECTION with Checkboxes -->
   <section class="py-8">
-    <h2 class="text-2xl font-bold text-center mb-6">📋 Our 50+ Pathology Tests</h2>
-    <div id="testCheckboxes" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 max-h-96 overflow-y-auto border p-4 rounded-xl bg-white"></div>
+    <h3 class="text-3xl font-bold text-center mb-6">📋 All Pathology Tests (50+)</h3>
+    <div id="testCheckboxes" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 max-h-96 overflow-y-auto border p-4 rounded-xl bg-white shadow"></div>
   </section>
 
-  <!-- Packages Section -->
-  <section class="py-8 bg-blue-50 rounded-2xl px-6 my-4">
-    <h2 class="text-2xl font-bold text-center mb-6">📦 Health Packages</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white p-5 rounded-xl shadow text-center">
-        <h3 class="text-xl font-bold">Basic Health Package</h3>
-        <p class="text-3xl font-bold text-green-600 my-2">₹999</p>
-        <ul class="text-left text-sm">
-          <li>✓ Complete Blood Count (CBC)</li>
-          <li>✓ Fasting Blood Sugar (FBS)</li>
-          <li>✓ Urine Routine</li>
-          <li>✓ Lipid Profile</li>
-        </ul>
-        <button class="bookPkgBtn mt-4 bg-green-600 text-white py-2 rounded-full w-full" data-pkg="Basic Health Package">Select Package</button>
-      </div>
-      <div class="bg-white p-5 rounded-xl shadow text-center">
-        <h3 class="text-xl font-bold">Advanced Health Package</h3>
-        <p class="text-3xl font-bold text-green-600 my-2">₹1999</p>
-        <ul class="text-left text-sm">
-          <li>✓ Lipid Profile</li>
-          <li>✓ Liver Function Test</li>
-          <li>✓ Kidney Function Test</li>
-          <li>✓ Thyroid Profile</li>
-          <li>✓ HbA1c</li>
-        </ul>
-        <button class="bookPkgBtn mt-4 bg-green-600 text-white py-2 rounded-full w-full" data-pkg="Advanced Health Package">Select Package</button>
-      </div>
-      <div class="bg-white p-5 rounded-xl shadow text-center">
-        <h3 class="text-xl font-bold">Executive Health Package</h3>
-        <p class="text-3xl font-bold text-green-600 my-2">₹3499</p>
-        <ul class="text-left text-sm">
-          <li>✓ Full Body Checkup</li>
-          <li>✓ Cardiac Markers</li>
-          <li>✓ Vitamin D & B12</li>
-          <li>✓ Hormone Assay</li>
-          <li>✓ Iron Studies</li>
-        </ul>
-        <button class="bookPkgBtn mt-4 bg-green-600 text-white py-2 rounded-full w-full" data-pkg="Executive Health Package">Select Package</button>
-      </div>
-    </div>
+  <!-- Health Packages -->
+  <section id="packages" class="py-10 bg-blue-50 rounded-3xl px-6 my-8">
+    <h3 class="text-3xl font-bold text-center">Health Packages</h3>
+    <div id="packagesContainer" class="grid md:grid-cols-3 gap-8 mt-8"></div>
   </section>
 
   <!-- Home Collection -->
-  <section class="py-8">
-    <div class="bg-white rounded-2xl shadow p-6 flex flex-col md:flex-row items-center gap-6">
-      <div class="flex-1 text-center md:text-left">
-        <i class="fas fa-truck-medical text-4xl text-green-600"></i>
-        <h3 class="text-2xl font-bold mt-2">Home Collection Service</h3>
-        <p class="text-gray-600">Safe, convenient & reliable – free sample pickup from home. Same-day available in Roorkee.</p>
-      </div>
-      <div class="flex-1">
-        <img src="home-sample-collection.png" alt="Home Collection" class="rounded-xl w-full h-40 object-cover" onerror="this.src='https://placehold.co/300x150/10B981/white?text=Home+Collection'">
-      </div>
-    </div>
-  </section>
+  <section><div class="bg-white rounded-2xl shadow flex flex-col md:flex-row"><div class="p-8 md:w-2/3"><i class="fas fa-truck-medical text-4xl text-green-600"></i><h4 class="text-2xl font-bold mt-2">Home Collection Service</h4><p>Safe & reliable – free sample pickup from home. Same-day available.</p></div><div class="md:w-1/3"><img src="home-sample-collection.png" class="w-full h-48 md:h-full object-cover rounded-r-2xl" onerror="this.src='https://placehold.co/300x250/10B981/white?text=Home+Collection'"></div></div></section>
 
-  <!-- Booking Form -->
-  <section id="booking" class="py-8 bg-white rounded-2xl shadow my-6 p-6">
-    <h2 class="text-2xl font-bold text-center mb-6">📝 Book Your Test(s)</h2>
-    <form id="bookingForm" class="max-w-2xl mx-auto">
-      <input type="text" id="patName" placeholder="Full Name *" class="w-full border p-3 rounded-lg mb-3" required>
-      <input type="tel" id="patMobile" placeholder="Mobile Number *" class="w-full border p-3 rounded-lg mb-3" required>
-      <input type="email" id="patEmail" placeholder="Email" class="w-full border p-3 rounded-lg mb-3">
-      <input type="text" id="patAddress" placeholder="Address" class="w-full border p-3 rounded-lg mb-3">
-      <input type="date" id="prefDate" class="w-full border p-3 rounded-lg mb-3">
-      <input type="time" id="prefTime" class="w-full border p-3 rounded-lg mb-3">
-      
-      <label class="font-semibold block mb-2">Select Tests (tick any number):</label>
-      <div id="selectedTestsDisplay" class="text-sm text-gray-500 mb-2">No tests selected</div>
-      
-      <label class="font-semibold block mb-2 mt-4">Or select a Package:</label>
-      <select id="packageSelect" class="w-full border p-3 rounded-lg mb-4">
-        <option value="">-- Select Package --</option>
-        <option value="Basic Health Package">Basic Health Package - ₹999</option>
-        <option value="Advanced Health Package">Advanced Health Package - ₹1999</option>
-        <option value="Executive Health Package">Executive Health Package - ₹3499</option>
-      </select>
-      
-      <button type="submit" class="bg-green-600 text-white font-bold py-3 rounded-full w-full"><i class="fab fa-whatsapp mr-2"></i> Book Now via WhatsApp</button>
-    </form>
-  </section>
+  <!-- Why Choose Us -->
+  <section class="py-8"><h3 class="text-3xl font-bold text-center">Why Choose Us?</h3><div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8 text-center"><div><i class="fas fa-microchip text-4xl text-blue-600"></i><p>Advanced Tech</p></div><div><i class="fas fa-hand-sparkles text-4xl text-green-600"></i><p>Hygienic</p></div><div><i class="fas fa-user-md text-4xl text-indigo-500"></i><p>Experienced</p></div><div><i class="fas fa-file-alt text-4xl text-amber-600"></i><p>Confidential</p></div></div></section>
 
-  <!-- Report Request -->
-  <section class="py-8 bg-gray-100 rounded-2xl my-6 p-6">
-    <h2 class="text-2xl font-bold text-center mb-4">📄 Request Your Test Report</h2>
-    <form id="reportForm" class="max-w-md mx-auto">
-      <input type="text" id="repName" placeholder="Full Name *" class="w-full border p-3 rounded-lg mb-3" required>
-      <input type="number" id="repAge" placeholder="Age *" class="w-full border p-3 rounded-lg mb-3" required>
-      <input type="text" id="repTest" placeholder="Test Name" class="w-full border p-3 rounded-lg mb-3">
-      <input type="date" id="repDate" class="w-full border p-3 rounded-lg mb-3">
-      <input type="text" id="repId" placeholder="Registration ID" class="w-full border p-3 rounded-lg mb-3">
-      <button type="submit" class="bg-green-600 text-white font-bold py-2 rounded-full w-full"><i class="fab fa-whatsapp mr-2"></i> Send Request on WhatsApp</button>
+  <!-- Multi-Test Booking Form -->
+  <section id="booking" class="py-12 bg-white rounded-2xl shadow-sm my-6">
+    <h3 class="text-3xl font-bold text-center">📋 Book Your Test(s)</h3>
+    <form id="bookingForm" class="max-w-4xl mx-auto mt-8 grid grid-cols-1 gap-5 p-4">
+      <div class="grid md:grid-cols-2 gap-4">
+        <input type="text" id="patName" placeholder="Full Name" class="border p-3 rounded-xl" required>
+        <input type="tel" id="patMobile" placeholder="Mobile Number" class="border p-3 rounded-xl" required>
+        <input type="email" id="patEmail" placeholder="Email" class="border p-3 rounded-xl">
+        <input type="text" id="patAddress" placeholder="Address" class="border p-3 rounded-xl">
+        <input type="date" id="prefDate" class="border p-3 rounded-xl">
+        <input type="time" id="prefTime" class="border p-3 rounded-xl">
+      </div>
+      <div><label class="font-semibold block mb-2">Select Tests (tick any number):</label><div id="selectedTestsDisplay" class="text-sm text-green-600 mb-2"></div></div>
+      <div><label class="font-semibold block mb-2">Or select a Package:</label><select id="packageSelect" class="border p-3 rounded-xl w-full bg-white"><option value="">-- Select Package --</option></select></div>
+      <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl text-lg shadow"><i class="fab fa-whatsapp mr-2"></i> Book Now via WhatsApp</button>
     </form>
   </section>
 
   <!-- Testimonials -->
-  <section class="py-8">
-    <h2 class="text-2xl font-bold text-center mb-6">Patient Testimonials</h2>
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="bg-white p-4 rounded shadow text-center"><i class="fas fa-user-circle text-4xl text-gray-400"></i><p class="mt-2">Accurate, fast, home collection is a lifesaver.</p><p class="font-bold mt-2">- Ramesh K.</p></div>
-      <div class="bg-white p-4 rounded shadow text-center"><i class="fas fa-user-circle text-4xl text-gray-400"></i><p class="mt-2">Very professional and affordable packages.</p><p class="font-bold mt-2">- Sneha M.</p></div>
-      <div class="bg-white p-4 rounded shadow text-center"><i class="fas fa-user-circle text-4xl text-gray-400"></i><p class="mt-2">Best lab in Roorkee – all tests under one roof.</p><p class="font-bold mt-2">- Anuj S.</p></div>
-    </div>
-  </section>
+  <section><h3 class="text-2xl font-bold text-center">Patient Testimonials</h3><div class="grid md:grid-cols-3 gap-6 mt-6"><div class="bg-white p-4 rounded shadow text-center"><i class="fas fa-user-circle text-5xl text-gray-400 mb-2"></i><p>Accurate, fast, home collection is a lifesaver.</p><p class="font-bold">- Ramesh K.</p></div><div class="bg-white p-4 rounded shadow text-center"><i class="fas fa-user-circle text-5xl text-gray-400 mb-2"></i><p>Very professional and affordable packages.</p><p class="font-bold">- Sneha M.</p></div><div class="bg-white p-4 rounded shadow text-center"><i class="fas fa-user-circle text-5xl text-gray-400 mb-2"></i><p>Best lab in Roorkee.</p><p class="font-bold">- Anuj S.</p></div></div></section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-8">
-    <h2 class="text-2xl font-bold text-center mb-6">Contact Us</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div>
-        <iframe class="w-full h-64 rounded-xl" src="https://maps.google.com/maps?q=Ganeshpur%2C%20Roorkee%2C%20Haridwar&output=embed"></iframe>
-        <p class="mt-3"><i class="fas fa-map-marker-alt text-green-600"></i> Ganeshpur, Roorkee, Haridwar, Uttarakhand</p>
-        <p><i class="fas fa-phone-alt"></i> +91 9837983062</p>
-        <p><i class="fas fa-envelope"></i> healthicianpathlab@gmail.com</p>
-      </div>
-      <form id="contactForm">
-        <input type="text" id="conName" placeholder="Your Name" class="w-full border p-3 rounded-lg mb-3">
-        <input type="email" id="conEmail" placeholder="Email" class="w-full border p-3 rounded-lg mb-3">
-        <textarea id="conMsg" rows="3" placeholder="Message" class="w-full border p-3 rounded-lg mb-3"></textarea>
-        <button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded-lg">Send Enquiry</button>
-      </form>
-    </div>
-  </section>
+  <!-- Contact + Map -->
+  <section id="contact" class="py-12"><h3 class="text-3xl font-bold text-center">Contact Us</h3><div class="grid md:grid-cols-2 gap-8 mt-8"><div><iframe class="w-full h-64 rounded-xl" src="https://maps.google.com/maps?q=Ganeshpur%2C%20Roorkee%2C%20Haridwar&output=embed"></iframe><p class="mt-3"><i class="fas fa-map-marker-alt text-green-600"></i> Ganeshpur, Roorkee, Haridwar</p><p><i class="fas fa-phone-alt"></i> +91 9837983062</p><p><i class="fas fa-envelope"></i> healthicianpathlab@gmail.com</p></div><div><form id="contactForm"><input type="text" id="contactName" placeholder="Your Name" class="w-full border p-3 rounded mb-2"><input type="email" id="contactEmail" placeholder="Email" class="w-full border p-3 rounded mb-2"><textarea id="contactMsg" rows="3" placeholder="Message" class="w-full border p-3 rounded mb-2"></textarea><button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded">Send Enquiry</button></form></div></div></section>
 
-  <footer class="bg-gray-900 text-white text-center py-6 rounded-t-3xl mt-6">
-    <p>© 2025 Healthician Path Lab. All Rights Reserved.</p>
-  </footer>
+  <footer class="bg-gray-900 text-white mt-12 rounded-t-3xl p-8 text-center"><p>© 2025 Healthician Path Lab. All Rights Reserved.</p><div class="flex justify-center space-x-4 mt-2"><a href="https://wa.me/919837983062" class="text-green-400"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></footer>
 </main>
 
 <script>
-  // 50+ COMPLETE TESTS LIST
-  const TESTS_LIST = [
+  // ============================================
+  // 50+ COMPLETE TESTS (HARDCODED - NO ADMIN NEEDED)
+  // ============================================
+  const FULL_TEST_LIST = [
     "Complete Blood Count (CBC)", "Hemoglobin (Hb)", "Total Leukocyte Count (TLC)", "Platelet Count", "ESR", "Blood Group & Rh",
     "Lipid Profile (Cholesterol, HDL, LDL, VLDL, TG)", "Thyroid Profile (T3, T4, TSH)", "Free T3", "Free T4", "TSH Ultra-sensitive",
     "Fasting Blood Sugar (FBS)", "Postprandial Blood Sugar (PPBS)", "HbA1c", "Liver Function Test (LFT)", "Kidney Function Test (KFT)",
@@ -190,45 +124,70 @@
     "C-reactive Protein (CRP)", "Rheumatoid Factor (RA)", "Blood Culture & Sensitivity", "Sputum Culture", "H. Pylori Antigen"
   ];
 
-  // Render test checkboxes
-  function renderTests() {
+  const PACKAGES = [
+    { name: "Basic Health Package", price: 999, features: ["CBC", "FBS", "Urine Routine", "Lipid Profile"] },
+    { name: "Advanced Health Package", price: 1999, features: ["Lipid Profile", "Liver Function", "Kidney Function", "Thyroid Profile", "HbA1c"] },
+    { name: "Executive Health Package", price: 3499, features: ["Full Body Checkup", "Cardiac Markers", "Vitamin D & B12", "Hormone Assay", "Iron Studies"] }
+  ];
+
+  // Render 50+ test checkboxes
+  function renderTestCheckboxes() {
     let container = document.getElementById("testCheckboxes");
     if (container) {
-      container.innerHTML = TESTS_LIST.map(test => `
-        <label class="flex items-center gap-2 p-1 hover:bg-gray-50 rounded">
+      container.innerHTML = FULL_TEST_LIST.map(test => `
+        <label class="flex items-center space-x-2 p-1 hover:bg-gray-50 rounded cursor-pointer">
           <input type="checkbox" class="testCheckbox" value="${test}">
           <span class="text-sm">${test}</span>
         </label>
       `).join('');
     }
     
-    // Update selected tests display
+    // Update selected count display
     document.querySelectorAll('.testCheckbox').forEach(cb => {
-      cb.addEventListener('change', updateSelectedTestsDisplay);
+      cb.addEventListener('change', updateSelectedCount);
     });
   }
 
-  function updateSelectedTestsDisplay() {
-    let selected = Array.from(document.querySelectorAll('.testCheckbox:checked')).map(cb => cb.value);
+  function updateSelectedCount() {
+    let selected = document.querySelectorAll('.testCheckbox:checked').length;
     let display = document.getElementById("selectedTestsDisplay");
     if (display) {
-      if (selected.length === 0) display.innerHTML = "No tests selected";
-      else if (selected.length <= 3) display.innerHTML = "✓ Selected: " + selected.join(", ");
-      else display.innerHTML = "✓ " + selected.length + " tests selected";
+      if (selected === 0) display.innerHTML = "";
+      else display.innerHTML = `✓ ${selected} test(s) selected`;
     }
   }
 
-  // Package select
-  document.querySelectorAll('.bookPkgBtn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      let pkg = this.getAttribute('data-pkg');
-      let select = document.getElementById("packageSelect");
-      if (select) select.value = pkg;
-      document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
-    });
-  });
+  // Render packages
+  function renderPackages() {
+    let container = document.getElementById("packagesContainer");
+    if (container) {
+      container.innerHTML = PACKAGES.map(p => `
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+          <h4 class="text-2xl font-bold text-blue-800">${p.name}</h4>
+          <p class="text-green-700 text-3xl font-bold my-2">₹${p.price}</p>
+          <ul>${p.features.map(f => `<li><i class="fas fa-check-circle text-green-500"></i> ${f}</li>`).join('')}</ul>
+          <button class="bookPkgBtn w-full bg-green-600 text-white py-2 rounded-full mt-4" data-pkg="${p.name}">Book Package</button>
+        </div>
+      `).join('');
+      
+      document.querySelectorAll('.bookPkgBtn').forEach(btn => {
+        btn.onclick = () => {
+          document.getElementById("packageSelect").value = btn.dataset.pkg;
+          document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
+        };
+      });
+    }
+  }
 
-  // Booking form submit
+  function renderPackageDropdown() {
+    let select = document.getElementById("packageSelect");
+    if (select) {
+      select.innerHTML = '<option value="">-- Select Package --</option>' + 
+        PACKAGES.map(p => `<option value="${p.name}">${p.name} - ₹${p.price}</option>`).join('');
+    }
+  }
+
+  // Booking submit
   document.getElementById("bookingForm")?.addEventListener("submit", function(e) {
     e.preventDefault();
     let name = document.getElementById("patName").value.trim();
@@ -237,39 +196,24 @@
     
     let selectedTests = Array.from(document.querySelectorAll('.testCheckbox:checked')).map(cb => cb.value);
     let pkg = document.getElementById("packageSelect").value;
-    let testStr = selectedTests.length ? selectedTests.join(", ") : (pkg ? pkg : "None");
+    let testStr = selectedTests.length ? selectedTests.join(", ") : (pkg ? pkg : "None selected");
     
     let msg = `Hello Healthician Path Lab,%0A*NEW BOOKING*%0A👤 Name: ${name}%0A📞 Mobile: ${mobile}%0A🧪 Tests: ${testStr}%0A📅 Date: ${document.getElementById("prefDate").value || "ASAP"}%0A⏰ Time: ${document.getElementById("prefTime").value || "Flexible"}%0A🏠 Address: ${document.getElementById("patAddress").value || "Not provided"}%0A📧 Email: ${document.getElementById("patEmail").value || "N/A"}`;
     
     window.open(`https://wa.me/919837983062?text=${msg}`, '_blank');
-    alert("✓ Booking sent via WhatsApp! Our team will contact you.");
+    alert("✓ Booking sent! Our team will contact you.");
     this.reset();
     document.querySelectorAll('.testCheckbox').forEach(cb => cb.checked = false);
-    updateSelectedTestsDisplay();
+    updateSelectedCount();
     document.getElementById("packageSelect").value = "";
-  });
-
-  // Report request
-  document.getElementById("reportForm")?.addEventListener("submit", function(e) {
-    e.preventDefault();
-    let name = document.getElementById("repName").value.trim();
-    let age = document.getElementById("repAge").value.trim();
-    if (!name || !age) { alert("Please enter name and age"); return; }
-    let test = document.getElementById("repTest").value.trim();
-    let date = document.getElementById("repDate").value;
-    let id = document.getElementById("repId").value.trim();
-    let msg = `Hello Healthician Path Lab,%0A*REPORT REQUEST*%0A👤 Name: ${name}%0A🎂 Age: ${age}%0A${id ? `🆔 ID: ${id}%0A` : ''}${test ? `🧪 Test: ${test}%0A` : ''}📅 Test Date: ${date || "Not provided"}%0A🙏 Please send report on this WhatsApp.`;
-    window.open(`https://wa.me/919837983062?text=${msg}`, '_blank');
-    alert("Request sent!");
-    this.reset();
   });
 
   // Contact form
   document.getElementById("contactForm")?.addEventListener("submit", function(e) {
     e.preventDefault();
-    let name = document.getElementById("conName").value.trim();
-    let email = document.getElementById("conEmail").value.trim();
-    let msg = document.getElementById("conMsg").value.trim();
+    let name = document.getElementById("contactName").value.trim();
+    let email = document.getElementById("contactEmail").value.trim();
+    let msg = document.getElementById("contactMsg").value.trim();
     if (!name || !email || !msg) { alert("Please fill all fields"); return; }
     let waMsg = `Hello Healthician Path Lab,%0A*ENQUIRY*%0AName: ${name}%0AEmail: ${email}%0AMessage: ${msg}`;
     window.open(`https://wa.me/919837983062?text=${waMsg}`, '_blank');
@@ -277,7 +221,9 @@
     this.reset();
   });
 
-  renderTests();
+  renderTestCheckboxes();
+  renderPackages();
+  renderPackageDropdown();
 </script>
 </body>
 </html>
